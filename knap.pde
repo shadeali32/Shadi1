@@ -12,12 +12,12 @@ class Knap {
 
 
   void display() {
-    if(klikket) fill(150); else fill(200);
+    if(klikket) fill(150); else fill(200);   
     rect(x, y, w, h);
-    fill(255);
   }
   
   boolean isClicked(){
+    println("Is clecked i knap klassen");
     if(x < mouseX && mouseX < x + w && y < mouseY && mouseY < y + h){
      klikket = true; 
     }
@@ -27,5 +27,4 @@ class Knap {
   void knapReleased(){
     klikket = false;
   }
-  
-}
+  }

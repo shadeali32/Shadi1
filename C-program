@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+int main() {
+    // Åbn den originale tekstfil
+    FILE *file = fopen("input.txt", "r");
+    if (file == NULL) {
+        printf("Kunne ikke åbne filen.\n");
+        return 1;
+    }
+
+    int numbers[3]; // Array til at gemme de tre tal
+    int i;
+
+    // Læs de tre tal fra filen og gem dem i arrayet
+    for (i = 0; i < 3; i++) {
+        fscanf(file, "%d", &numbers[i]);
+    }
+    fclose(file);
+
+    // Definer værdien af x som 30
+    int x = 30;
+
+    // Kontroller om nogen af tallene er større end 30
+    int red = 0; // Flag til at markere rød
+    for (i = 0; i < 3; i++) {
+        if (numbers[i] > x) {
+            red = 1; // Sæt flag til rød, hvis et tal er større end 30
+            break;
+        }
+    }
+
+    // Åbn en ny tekstfil til at skrive resultatet (rød eller grøn)
+    FILE *outputFile = fopen("output.txt", "w");
+    if (outputFile == NULL) {
+        printf("Kunne ikke åbne outputfilen.\n");
+        return 1;
+    }
+
+    // Skriv "Rød" eller "Grøn" til outputfilen baseret på flagget
+    if (red) {
+        fprintf(outputFile, "Rød\n");
+    } else {
+        fprintf(outputFile, "Grøn\n");
+    }
+
+    fclose(outputFile);
+    printf("Resultatet er blevet gemt i output.txt.\n");
+
+    return 0;
+}
